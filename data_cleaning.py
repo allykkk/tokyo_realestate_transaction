@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import sys
 
 main_23_wards = [
     'Chiyoda Ward', 'Chuo Ward', 'Minato Ward', 'Shinjuku Ward', 'Bunkyo Ward',
@@ -40,14 +41,15 @@ def clean_data(input_path, output_path):
     df.to_csv(output_path, index=False)
 
 
-input_folder = '/Users/ally/Documents/Vscode/tokyo_realestate_transaction/orginal_data'
-output_folder = '/Users/ally/Documents/Vscode/tokyo_realestate_transaction/clean_data'
+if __name__ == "__main__":
 
+    input_folder = sys.argv[1]
+    output_folder = sys.argv[2]
 
-csv_files = [file for file in os.listdir(
-    input_folder) if file.endswith('.csv')]
+    csv_files = [file for file in os.listdir(
+        input_folder) if file.endswith('.csv')]
 
-for file in csv_files:
-    input_file_path = os.path.join(input_folder, file)
-    output_file_path = os.path.join(output_folder, file)
-    clean_data(input_file_path, output_file_path)
+    for file in csv_files:
+        input_file_path = os.path.join(input_folder, file)
+        output_file_path = os.path.join(output_folder, file)
+        clean_data(input_file_path, output_file_path)
